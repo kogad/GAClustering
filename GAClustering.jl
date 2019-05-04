@@ -150,16 +150,19 @@ function main()
 
     data = hcat(_clst1, _clst2, _clst3, _clst4, _clst5, _clst6, _clst7)
 
-    clst, centers = gac(data, clstnum)
 
     # クラスタリングなし
     p1 = scatter(data[1,:], data[2,:], legend=:none, markerstrokewidth=0)
     
+
     # GA-clustering
+    clst, centers = gac(data, clstnum)
+
     p2 = scatter(clst[1][1,:], clst[1][2,:], legend=:none, markerstrokewidth=0)
     for i = 2:clstnum
         p2 = scatter!(clst[i][1,:], clst[i][2,:], legend=:none, markerstrokewidth=0)
     end
+
 
     # k-means
     r = kmeans(data,clstnum)
